@@ -47,4 +47,61 @@ void push(char a){
 			return head->element;
 		}	
 		
-		
+		void cetak(){
+			if(kosong()){
+				cout<<"Stack Kosong!";
+			}
+      		else{
+				node *bantu=head;
+				while(bantu!=NULL){
+					cout<<bantu->element<<endl;
+					bantu=bantu->next;
+				}
+			}
+		}    
+};
+
+int cek(char cekoperator){	
+	if(cekoperator=='*'||cekoperator=='/')
+		return 2;
+	else
+		return 1;
+}
+
+int main(){
+	stack S;
+	int i=0,n=0,A,B,C;
+	char postfix[256];
+	char infix[256];
+	
+	cout<<"masukkan infix:"<<endl;
+	cin>>infix;
+	while(infix[i]!='\0'){
+		if(isdigit(infix[i])){
+			postfix[n]=infix[i];
+			n++;
+		}
+		else if(infix[i]=='('){
+			S.push(infix[i]);
+		}
+		else if(infix[i]==')'){
+			while(!S.kosong() && S.top()!='('){
+				postfix[n]=S.pop();
+				n++;
+			}
+			S.pop();
+		}
+		else{
+			if(S.kosong() || S.top()=='('){
+				S.push(infix[i]);
+			}
+			else{
+				while(!S.kosong() && S.top()!='(' && cek(infix[i])<=cek(S.top())){
+					postfix[n]=S.pop();
+					n++;
+				}
+				S.push(infix[i]);
+			}
+		}
+		i++;
+	}
