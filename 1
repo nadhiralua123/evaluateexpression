@@ -16,3 +16,35 @@ class stack{
 			else
 			return false;
 			}
+			
+void push(char a){
+			node *baru=new node;
+			baru->element=a;
+			baru->next=NULL;
+			if(kosong()){
+				head=baru;
+			}
+			else{
+				baru->next=head;
+				head=baru;
+			}
+		}
+    		char pop(){
+			if(kosong()){
+				cout<<"stack kosong"<<endl;
+			return 0;
+			}
+			
+      		else{
+				char ch=head->element;
+				node *tmp=head->next;
+				delete head;
+				head=tmp;
+				return ch;
+			}
+		}
+		char top(){
+			return head->element;
+		}	
+		
+		
