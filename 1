@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+struct node{
+	char element;
+	node *next;
+};
+
+class stack{
+	public:
+		node *head=NULL;
+	public:
+		bool kosong(){
+			if(head==NULL)
+				return true;
+			else
+			return false;
+			}
