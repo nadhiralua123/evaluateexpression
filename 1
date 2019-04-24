@@ -105,3 +105,39 @@ int main(){
 		}
 		i++;
 	}
+while(!S.kosong()){
+		postfix[n]=S.pop();
+		n++;
+	}
+	n=0;
+  	while(postfix[n]!='\0'){  
+    		if(isdigit(postfix[n])){
+				S.push(postfix[n]);
+			}
+	  		else{
+		 		A=S.pop()-'0';
+		 		B=S.pop()-'0';
+				if(postfix[n]=='*'){
+					C=B*A;
+					S.push(C+'0');
+		  		}
+      			else if(postfix[n]=='/'){
+			 		C=B/A;
+		 			S.push(C+'0');
+		  		}
+				else if(postfix[n]=='+'){
+			 		C=B+A;
+					S.push(C+'0');	
+		  		}
+				else if(postfix[n]=='-'){
+					C=B-A;
+					S.push(C+'0');
+		  		}
+				else{
+					cout<<"Stack tidak ada"<<endl;
+		  		}
+			}
+	  	n++;
+  	}
+	cout<<S.pop()-'0';
+	return 0;}
